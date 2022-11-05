@@ -1,0 +1,1 @@
+# Vous créerez ici les classes view si nécessaire a votre application
