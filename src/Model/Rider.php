@@ -10,13 +10,14 @@ class Rider extends Human{
     //Constructor
     public function __construct(string $name, string $adress, string $street, string $postCode, string $city, Capabilities $gameType){
         parent::__construct($name, $adress, $street, $postCode, $city);
-        $this->setCapabilities($gameType);
+        $this->setGameType($gameType);
     }
 
     /**
      * Get the value of capabilities
+     * @return Capabilities
      */ 
-    public function getCapabilities()
+    public function getGameType(): Capabilities
     {
         return $this->capabilities;
     }
@@ -26,7 +27,7 @@ class Rider extends Human{
      *
      * @return  self
      */ 
-    public function setCapabilities($capabilities)
+    public function setGameType($capabilities): self
     {
         $this->capabilities = $capabilities;
 
@@ -35,6 +36,6 @@ class Rider extends Human{
 
     //output the rider's informations
     public function __toString(): string{
-        return parent::__toString()."Job : Rider\n Game type : ".$this->getCapabilities()->getGameType()."\n\n";
+        return parent::__toString()."Job : Rider\n Game type : ".$this->getGameType()->getCapabilities()."\n\n";
     }
 }
