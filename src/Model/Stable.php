@@ -168,9 +168,9 @@ class Stable{
         City: {$this->getCity()}\n\n";
 
         if ($this->manager){
-            $str .= "        Manager:  True\n";
+            $str .= "        Manager: {$this->getManager()->getName()}\n";
         }else{
-            $str .= "        Manager:  Vacancy job\n";
+            $str .= "        Manager: Vacancy job\n";
         }
         return $str;
     }
