@@ -35,6 +35,27 @@ abstract class Equine extends Animal{
     }
 
     /**
+     * Set Category of the equine
+     * @param Capabilitie $category
+     * @return self
+     */
+
+    public function setCategory(Capabilitie $category): self
+    {
+        $this->category = $category;
+        return $this;
+    }
+
+    /**
+     * Get Category of the equine
+     * @return Capabilitie
+     */
+    public function getCategory(): Capabilitie
+    {
+        return $this->category;
+    }
+
+    /**
      * Get the value of equine (counter)
      * @return int
      */
