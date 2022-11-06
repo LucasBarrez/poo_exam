@@ -1,7 +1,9 @@
 <?php
 
+use App\Model\Rider;
 use App\Model\Stable;
 use App\Model\Manager;
+use App\Model\Capabilities;
 
 require_once("../src/app.php");
 
@@ -24,4 +26,16 @@ require_once("../src/app.php");
 // $myStable2 = new Stable("My Stable2", "mystable@stable.com", "My Street", "12345", "My City", "invalid manager");
 // echo $myStable1->__toString();
 
-//Create a new rider
+//create capabilities
+$jumping = new Capabilities("jumping");
+$dressage = new Capabilities("dressage");
+$cross = new Capabilities("cross");
+$PoneyGames = new Capabilities("PoneyGames");
+
+// //create a capabilties with invalid argument
+// //expected result: program stops with an error
+// // $invalidCapabilities = new Capabilities("invalid capabilities");
+
+// //Create a new rider
+// $rider = new Rider("Lucas", "lucas.barrez@", "Prytanée Militaire", "72200", "La Flèche", $jumping);
+// echo $rider->__toString();

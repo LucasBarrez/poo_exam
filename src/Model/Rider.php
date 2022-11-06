@@ -36,6 +36,6 @@ class Rider extends Human{
 
     //output the rider's informations
     public function __toString(): string{
-        return parent::__toString()."Job : Rider\n Game type : ".$this->getGameType()->getCapabilities()."\n\n";
+        return parent::__toString()."Job : Rider\nGame type : ".$this->getGameType()->getCapabilities()."\n\n";
     }
 }
