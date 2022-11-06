@@ -1,6 +1,8 @@
 <?php
 namespace App\Model;
 
+use Exception;
+
 //This class has one responsability: to initialize the stable
 class Stable{
 
@@ -13,19 +15,22 @@ class Stable{
     private string $city;
 
     //Human who is in charge of the stable
-    private Manager $manager;
+    private ?Manager $manager = null;
 
     //Constructor
     //Manager is not mandatory whereas the other properties are
-
-    public function __construct(string $name, string $adress, string $street, string $postCode, string $city, Manager $manager = null)
-    {
-        $this->name = $name;
-        $this->adress = $adress;
-        $this->street = $street;
-        $this->postCode = $postCode;
-        $this->city = $city;
-        $this->manager = $manager;
+    public function __construct(string $name, string $adress, string $street, string $postCode, string $city, $manager = null){
+        $this->setName($name)
+            ->setAdress($adress)
+            ->setStreet($street)
+            ->setPostCode($postCode)
+            ->setCity($city);
+        if($manager instanceof Manager and $manager !== null){
+            $this->setManager($manager);
+        }
+        if ($manager !== null and !($manager instanceof Manager)){
+            die("The manager must be an instance of Manager class\n");
+        }
     }
 
     /**
@@ -150,7 +155,6 @@ class Stable{
     public function setManager($manager): self
     {
         $this->manager = $manager;
-
         return $this;
     }
 
@@ -161,9 +165,13 @@ class Stable{
         Adress: {$this->getAdress()}\n
         Street: {$this->getStreet()}\n
         Post code: {$this->getPostCode()}\n
-        City: {$this->getCity()}\n
-        Manager: {$this->getManager()}\n";
+        City: {$this->getCity()}\n\n";
 
+        if ($this->manager){
+            $str .= "        Manager:  True\n";
+        }else{
+            $str .= "        Manager:  Vacancy job\n";
+        }
         return $str;
     }
 }
