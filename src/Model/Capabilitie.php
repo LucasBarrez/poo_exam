@@ -1,13 +1,17 @@
 <?php
 namespace App\Model;
 
-use Exception;
 
+// In the future, we will be abble to add new capabilities to our equines (like swimming, flying, etc.)
+//Today, we have only four capability: Jumping, dressage, cross, poney games
 abstract class Capabilitie{
     //Properties
-    private const CAPABILITIES = ['Jumping', 'Dressage', 'Cross', 'PoneyGames'];
 
     private string $type;
+
+    //Constructor
+    public function __construct(string $type){
+    }
 
     /**
      * Get the value of type
@@ -25,12 +29,7 @@ abstract class Capabilitie{
      */ 
     public function setType($type): self
     {
-        if(in_array($type, self::CAPABILITIES)){
-            $this->type = $type;
-        }else{
-            throw new Exception("Invalid game type");
-        }
-
+        $this->type = $type;
         return $this;
     }
 }

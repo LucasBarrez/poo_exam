@@ -16,6 +16,9 @@ abstract class Equine extends Animal{
     //In option: a rider 
     private ?Rider $rider = null;
 
+    //Counter to know how many equines we have created
+    private static int $counter = 0;
+
     //Constructor
     public function __construct(string $name, string $id, string $color, string $water, $rider = null){
         parent::__construct($name);
@@ -28,6 +31,15 @@ abstract class Equine extends Animal{
         if ($rider !== null and !($rider instanceof Rider)){
             die("The rider must be an instance of Rider class\n");
         }
+        self::$counter++;
+    }
+
+    /**
+     * Get the value of equine (counter)
+     * @return int
+     */
+    public static function getCounter():int {
+        return self::$counter;
     }
 
     /**
