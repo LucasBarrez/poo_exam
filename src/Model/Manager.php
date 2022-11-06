@@ -10,6 +10,6 @@ class Manager extends Human{
 
     //ouput the manager's informations
     public function __toString(): string{
-        return parent::__toString()."       Job : Manager\n";
+        return parent::__toString()."Job : Manager\n\n";
     }
 }
