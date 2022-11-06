@@ -1,6 +1,8 @@
 <?php
 namespace App\Model;
 
+//This class has the responsability to state a Human as a Manager
+
 class Manager extends Human{
 
     //constructor
