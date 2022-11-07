@@ -38,11 +38,11 @@ abstract class Equine extends Animal{
 
     /**
      * Set Category of the equine
-     * @param Capabilitie $category
+     * @param $category
      * @return self
      */
 
-    public function setCategory(Capabilitie $category): self
+    public function setCategory($category): self
     {
         $this->category = $category;
         return $this;
@@ -50,9 +50,9 @@ abstract class Equine extends Animal{
 
     /**
      * Get Category of the equine
-     * @return Capabilitie
+     * 
      */
-    public function getCategory(): Capabilitie
+    public function getCategory()
     {
         return $this->category;
     }
@@ -155,7 +155,7 @@ abstract class Equine extends Animal{
 
     //output the equine's informations
     public function __toString(): string{
-        $str = parent::__toString()."Id : ".$this->getId()."\nColor : ".$this->getColor()."\nWater : ".$this->getWater()."\n";
+        $str = parent::__toString()."Id : ".$this->getId()."\nColor : ".$this->getColor()."\nWater : ".$this->getWater()."\n".$this->getCategory()."\n";
         if($this->rider){
             $str .= "Rider : ".$this->getRider()->getName()."\n";
         }else{

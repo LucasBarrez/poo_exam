@@ -4,6 +4,7 @@ namespace App\Model;
 use Exception;
 //This class has responsability to state the capabilities of a rider or a horse etc ...
 //To have a largest choice of capabilities, we just have to add a new constant in the array.
+//Make a class Capabilities will provide us to add informations, caracteristics for gametype, game duration etc ..
 
 class Capabilities{
     //Properties
