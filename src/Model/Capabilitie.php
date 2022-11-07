@@ -7,29 +7,29 @@ namespace App\Model;
 abstract class Capabilitie{
     //Properties
 
-    private string $type;
+    private string $name;
 
     //Constructor
-    public function __construct(string $type){
+    public function __construct(string $name){
     }
 
     /**
-     * Get the value of type
+     * Get the value of name
      * @return string
      */ 
-    public function getType(): string
+    public function getName(): string
     {
         return $this->type;
     }
 
     /**
-     * Set the value of type
+     * Set the value of name
      *
      * @return  self
      */ 
-    public function setType($type): self
+    public function setName($name): self
     {
-        $this->type = $type;
+        $this->name = $name;
         return $this;
     }
 }

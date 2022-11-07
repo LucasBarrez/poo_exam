@@ -2,6 +2,8 @@
 namespace App\Model;
 use App\Model\Animal;
 
+//One responsability : just initialize the common caracteritics of an equine.
+
 //Abstract because we will never directly create an instance of this class
 // We will use it to create a horse or a pony ...
 abstract class Equine extends Animal{
