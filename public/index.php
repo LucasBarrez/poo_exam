@@ -1,9 +1,12 @@
 <?php
 
+use App\Model\Pony;
 use App\Model\Horse;
 use App\Model\Rider;
+use App\Model\Equine;
 use App\Model\Stable;
 use App\Model\Manager;
+use App\Model\Sheitland;
 use App\Model\Capabilities;
 
 require_once("../src/app.php");
@@ -39,7 +42,14 @@ require_once("../src/app.php");
 
 // //Create a new rider
 $rider = new Rider("Lucas", "lucas.barrez@", "Prytanée Militaire", "72200", "La Flèche", new Capabilities("jumping"));
-// echo $rider->__toString();
+echo $rider->__toString();
 
-$myHorse = new Horse("jumping","Max", "23263232", 'Pie', 32, $rider);
+$myHorse = new Pony("jumping","Max", "23263232", "Bai", 32, $rider);
+$myHorse2 = new Sheitland("jumping","Max", "23263232", "Bai", 32, $rider);
+$myHorse3 = new Horse("jumping","Max", "23263232", "Bai", 32, $rider);
+$myHorse4 = new Horse("jumping","Max", "23263232", "Bai", 32, $rider);
+
 echo $myHorse->__toString();
+echo Equine::getCounter();
+echo "\n";
+echo $myHorse2->__toString();

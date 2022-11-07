@@ -2,6 +2,8 @@
 namespace App\Model;
 use App\Model\Animal;
 
+//GOAL : Be abble to create every equine we want from this class
+
 //One responsability : just initialize the common caracteritics of an equine.
 
 //Abstract because we will never directly create an instance of this class
@@ -33,6 +35,7 @@ abstract class Equine extends Animal{
         if ($rider !== null and !($rider instanceof Rider)){
             die("The rider must be an instance of Rider class\n");
         }
+        //$this->setRider($rider);
         self::$counter++;
     }
 
@@ -156,7 +159,7 @@ abstract class Equine extends Animal{
     //output the equine's informations
     public function __toString(): string{
         $str = parent::__toString()."Id : ".$this->getId()."\nColor : ".$this->getColor()."\nWater : ".$this->getWater()."\n".$this->getCategory()."\n";
-        if($this->rider){
+        if($this->getRider()){
             $str .= "Rider : ".$this->getRider()->getName()."\n";
         }else{
             $str .= "Rider : None\n";

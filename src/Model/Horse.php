@@ -7,9 +7,11 @@ class Horse extends Equine{
     //properties
     private string $capabilitieName;
 
+    private const RACE = "Horse";
+
     public function __construct(string $capabilitieName, string $name, string $id, string $color, string $water, $rider = null)
     {
-        parent::__construct($name, $id, $color, $water, $rider = null);
+        parent::__construct($name, $id, $color, $water, $rider);
         $this->setCapabilitieName($capabilitieName)
             ->setCategory(new Capabilities($capabilitieName));
 
@@ -37,6 +39,6 @@ class Horse extends Equine{
 
     public function __toString(): string
     {
-        return parent::__toString();
+        return "\nRace : {}\n".parent::__toString();
     }
 }
