@@ -39,6 +39,6 @@ class Horse extends Equine{
 
     public function __toString(): string
     {
-        return "\nRace : {}\n".parent::__toString();
+        return "\nRace :".self::RACE."\n".parent::__toString();
     }
 }
