@@ -9,9 +9,14 @@ class Rider extends Human{
     private ?Capabilitie $capabilitie = null;
 
     //Constructor
-    public function __construct(string $name, string $adress, string $street, string $postCode, string $city, $capabilitie = null){
+    public function __construct(string $name, string $adress, string $street, int $postCode, string $city, $capabilitie = null){
         parent::__construct($name, $adress, $street, $postCode, $city);
-        $this->setCapabilitie($capabilitie);
+        if($capabilitie instanceof Capabilitie and $capabilitie !== null){
+            $this->setCapabilitie($capabilitie);
+        }
+        if ($capabilitie !== null and !($capabilitie instanceof Capabilitie)){
+            echo "The capabilitie must be an instance of Capabilies class\n";
+        }
     }
 
     /**
@@ -36,6 +41,12 @@ class Rider extends Human{
 
     //output the rider's informations
     public function __toString(): string{
-        return parent::__toString()."Job : Rider\nGame type : ".$this->getCapabilitie()->getName()."\n\n";
+        $str = parent::__toString()."Job : Rider\n";
+
+        if($this->capabilitie !== null){
+            $str .= "Game type : ".$this->capabilitie->getName()."\n";
+        }
+
+        return $str;
     }
 }

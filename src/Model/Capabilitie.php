@@ -6,8 +6,8 @@ namespace App\Model;
 //Today, we have only four capability: Jumping, dressage, cross, poney games
 class Capabilitie{
     
-    //Attributes
-    private const possibilities = ["Jumping", "Dressage", "Cross", "Poney Games"];
+    //Attributes : all in uppercase and without spaces
+    private const possibilities = ["JUMPING", "DRESSAGE", "CROSS", "PONEYGAMES"];
     
     //Properties
     private string $name;
@@ -23,7 +23,7 @@ class Capabilitie{
      */ 
     public function getName(): string
     {
-        return $this->type;
+        return $this->name;
     }
 
     /**
@@ -33,6 +33,8 @@ class Capabilitie{
      */ 
     public function setName($name): self
     {
+        $name = str_replace(" ", "", $name);
+        $name = strtoupper($name);
         if(in_array($name, self::possibilities)){
             $this->name = $name;
         }else{

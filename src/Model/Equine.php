@@ -33,7 +33,7 @@ abstract class Equine extends Animal{
             $this->setRider($rider);
         }
         if ($rider !== null and !($rider instanceof Rider)){
-            die("The rider must be an instance of Rider class\n");
+            echo "The rider must be an instance of Rider class\n";
         }
         //$this->setRider($rider);
         self::$counter++;
