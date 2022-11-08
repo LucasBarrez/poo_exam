@@ -40,27 +40,6 @@ abstract class Equine extends Animal{
     }
 
     /**
-     * Set Category of the equine
-     * @param $category
-     * @return self
-     */
-
-    public function setCategory($category): self
-    {
-        $this->category = $category;
-        return $this;
-    }
-
-    /**
-     * Get Category of the equine
-     * 
-     */
-    public function getCategory()
-    {
-        return $this->category;
-    }
-
-    /**
      * Get the value of equine (counter)
      * @return int
      */
@@ -116,9 +95,9 @@ abstract class Equine extends Animal{
 
     /**
      * Get the value of water
-     * @return string
+     * @return int
      */
-    public function getWater(): string
+    public function getWater(): int
     {
         return $this->water;
     }
@@ -158,8 +137,8 @@ abstract class Equine extends Animal{
 
     //output the equine's informations
     public function __toString(): string{
-        $str = parent::__toString()."Id : ".$this->getId()."\nColor : ".$this->getColor()."\nWater : ".$this->getWater()."\n".$this->getCategory()."\n";
-        if($this->getRider()){
+        $str = parent::__toString()."Id : ".$this->getId()."\nColor : ".$this->getColor()."\nWater : ".$this->getWater()."\n";
+        if($this->rider){
             $str .= "Rider : ".$this->getRider()->getName()."\n";
         }else{
             $str .= "Rider : None\n";

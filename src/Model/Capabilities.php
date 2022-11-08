@@ -1,49 +1,29 @@
 <?php
 namespace App\Model;
 
-use Exception;
-//This class has responsability to state the capabilities of a rider or a horse etc ...
-//To have a largest choice of capabilities, we just have to add a new constant in the array.
-//Make a class Capabilities will provide us to add informations, caracteristics for gametype, game duration etc ..
-
-class Capabilities{
+trait Capabilities{
+    
     //Properties
-    private const GAME_TYPE = ['jumping', 'dressage', 'cross', 'PoneyGames'];
-
-    private string $capabilities;
-
-    //Constructor
-    public function __construct(string $capabilities){
-        $this->setCapabilities($capabilities);
-    }
+    private Type $type;
 
     /**
-     * Get the value of capabilities
-     * 
-     * @return string
+     * Get the value of type
+     * @return Type
      */ 
-    public function getCapabilities(): string
+    public function getType(): Type
     {
-        return $this->capabilities;
+        return $this->type;
     }
 
     /**
-     * Set the value of capabilities
+     * Set the value of type
      *
      * @return  self
      */ 
-    public function setCapabilities($capabilities): self
+    public function setType($type):self
     {
-        if(in_array($capabilities, self::GAME_TYPE)){
-            $this->capabilities = $capabilities;
-        }else{
-            throw new Exception("Invalid game type");
-        }
-        return $this;
-    }
+        $this->type = $type;
 
-    //output the capabilities' informations
-    public function __toString(): string{
-        return "Game type : ".$this->getCapabilities()."\n";
+        return $this;
     }
 }

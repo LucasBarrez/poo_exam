@@ -7,7 +7,7 @@ use App\Model\Equine;
 use App\Model\Stable;
 use App\Model\Manager;
 use App\Model\Sheitland;
-use App\Model\Capabilities;
+
 
 require_once("../src/app.php");
 
@@ -40,16 +40,16 @@ require_once("../src/app.php");
 // //expected result: program stops with an error
 // // $invalidCapabilities = new Capabilities("invalid capabilities");
 
-// //Create a new rider
-// $rider = new Rider("Lucas", "lucas.barrez@", "Prytanée Militaire", "72200", "La Flèche", new Capabilities("jumping"));
-// echo $rider->__toString();
+//Create a new rider
+//$rider = new Rider("Jumping","Lucas", "lucas.barrez@", "Prytanée Militaire", "72200", "La Flèche");
+//echo $rider->__toString();
 
-// $myHorse = new Pony("jumping","Max", "23263232", "Bai", 32, $rider);
+$myHorse = new Pony("Jumping","jbvahk","Max", "Bai", 32);
 // $myHorse2 = new Sheitland("jumping","Max", "23263232", "Bai", 32, $rider);
 // $myHorse3 = new Horse("jumping","Max", "23263232", "Bai", 32, $rider);
 // $myHorse4 = new Horse("jumping","Max", "23263232", "Bai", 32, $rider);
 
-// echo $myHorse->__toString();
+echo $myHorse->__toString();
 // echo Equine::getCounter();
 // echo "\n";
 // echo $myHorse2->__toString();

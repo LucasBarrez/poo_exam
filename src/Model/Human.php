@@ -12,6 +12,7 @@ abstract class Human{
     private string $postCode;
     private string $city;
 
+
     //Constructor
     public function __construct(string $name, string $adress, string $street, string $postCode, string $city){
         $this->setName($name)
