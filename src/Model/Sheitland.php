@@ -5,38 +5,39 @@ namespace App\Model;
 
 class Sheitland extends Equine{
     //properties
-    private string $capabilitieName;
+    private ?Capabilitie $capabilitie = null;
 
     private const RACE = "Sheitland";
 
-    public function __construct(string $capabilitieName, string $name, string $id, string $color, string $water, $rider = null)
+    public function __construct(string $name, string $id, string $color, string $water, $rider = null, $capabilitie = null)
     {
         parent::__construct($name, $id, $color, $water, $rider);
-        $this->setCapabilitieName($capabilitieName)
-            ->setCategory(new Capabilities($capabilitieName));
+        $this->setCapabilitie($capabilitie);
 
     }
 
+    
     /**
-     * Get the value of capabilitieName
-     */
-    public function getCapabilitieName()
+     * Get the value of capabilitie
+     */ 
+    public function getCapabilitie()
     {
-        return $this->capabilitieName;
+        return $this->capabilitie;
     }
 
     /**
-     * Set the value of capabilitieName
+     * Set the value of capabilitie
      *
      * @return  self
      */ 
-    public function setCapabilitieName($capabilitieName)
+    public function setCapabilitie($capabilitie)
     {
-        $this->capabilitieName = $capabilitieName;
-
+        $this->capabilitie = $capabilitie;
+        
         return $this;
     }
-
+    
+    
     public function __toString(): string
     {
         return "\nRace :".self::RACE."\n".parent::__toString();
