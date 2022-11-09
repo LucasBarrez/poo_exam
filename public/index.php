@@ -8,7 +8,7 @@ use App\Model\Stable;
 use App\Model\Manager;
 use App\Model\Sheitland;
 use App\Model\Capabilitie;
-
+use App\Model\Human;
 
 require_once("../src/app.php");
 

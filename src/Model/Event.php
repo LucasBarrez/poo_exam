@@ -1,4 +1,5 @@
 <?php
+namespace App\Model;
 
 
 // All events will have a name, a date, a location, a type and a list of participants
@@ -12,10 +13,21 @@ abstract class Event{
 
     
     //Constructor
-    public function __construct(string $name, string $date, string $location, int $maxWater){
-        
-
+    public function __construct(string $name, string $date, string $location, int $maxWater, int $maxCommitments)
+    {
+        $this->setName($name)
+            ->setDate($date)
+            ->setLocation($location)
+            ->setMaxWater($maxWater)
+            ->setMaxCommitments($maxCommitments);
     }
+
+    //Arguments are animals, because this event class is abble to state an event for every animal.
+    // Open to scale ? Oh yeah
+    abstract public function getParticipantsList():array;
+    abstract public function addParticipant(Animal $animal):self;
+    abstract public function removeParticipant(Animal $animal):self;
+
 
     /**
      * Get the value of name
@@ -116,4 +128,5 @@ abstract class Event{
 
         return $this;
     }
+
 }
