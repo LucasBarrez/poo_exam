@@ -1,7 +1,7 @@
 <?php
 namespace App\Model;
 
-class Team{
+abstract class Team{
 
     // Propriétés
     private array $team;
@@ -13,18 +13,9 @@ class Team{
             ->setHuman($human);
     }
 
-    public function addAnimal(Animal $animal): self
-    {
-        $this->team[] = $animal;
+    abstract public function addAnimal(Animal $animal): self;
 
-        return $this;
-    }
-
-    public function removeAnimal(Animal $animal): self
-    {
-        // TO DO delete animal from array
-        return $this;
-    }
+    abstract public function removeAnimal(Animal $animal): self;
 
     /**
      * Get the value of team
@@ -55,7 +46,7 @@ class Team{
     }
 
     /**
-     * Set the value of dresseur
+     * Set the value of Human
      *
      * @return  self
      */ 
