@@ -1,5 +1,6 @@
 <?php
 namespace App\Model;
+use Exception;
 use App\Model\Animal;
 
 //GOAL : Be abble to create every equine we want from this class
@@ -20,12 +21,24 @@ abstract class Equine extends Animal{
     //In option: a rider 
     private Rider $rider;
 
+    //Counter of equine
+    private static int $counter = 0;
+
     //Constructor
-    public function __construct(string $name, string $id, string $color, string $water){
+    public function __construct(string $name, string $color, string $water){
         parent::__construct($name);
-        $this->setId($id)
-            ->setColor($color)
-            ->setWater($water);
+        if(isset($color)){
+            $this->setColor($color);
+        }else{
+            throw new Exception("Error : you must enter a color for the equine");
+        }
+        if(isset($water)){
+            $this->setWater($water);
+        }else{
+            throw new Exception("Error : you must enter a water for the equine");
+        }
+        //Increment the counter
+        self::$counter++;
 
     }
 
@@ -40,11 +53,16 @@ abstract class Equine extends Animal{
 
     /**
      * Set the value of id
-     *
+     * @param string $id
      * @return  self
      */
     public function setId($id): self
     {
+        $nameLetter = strtolower(substr($this->getName(), 0));
+        $colorLetter = strtoupper(substr($this->getColor(), 0));
+        $count = self::$counter;
+
+        $id = "000-{$nameLetter}-{$colorLetter}-{self::$count}";
         $this->id = $id;
 
         return $this;
@@ -61,9 +79,11 @@ abstract class Equine extends Animal{
 
     /**
      * Set the value of color
-     *
+     * @param string $color
      * @return  self
      */
+
+    //Uppercase + no spaces = less errors if users enter a color with a little error like a space
     public function setColor($color): self
     {
         $color = str_replace(" ", "", $color);

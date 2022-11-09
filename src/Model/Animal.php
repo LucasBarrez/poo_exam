@@ -1,6 +1,8 @@
 <?php
 namespace App\Model;
 
+use Exception;
+
 //Abstract because we will never directly create an instance of this class
 // We will use this class to create a equine or dogs ...
 abstract class Animal {
@@ -10,7 +12,11 @@ abstract class Animal {
 
     //Constructor
     public function __construct(string $name){
-        $this->setName($name);
+        if(isset($name)){
+            $this->setName($name);
+        }else{
+            throw new Exception("Error : you must enter a name for the animal");
+        }
     }
 
     /**
