@@ -19,7 +19,7 @@ class Capabilitie{
         if (isset($name)) {
             $this->setName($name);
         }else{
-            throw new Exception("Error : you must enter a name for the capability");  
+            throw new Exception("Error : you must enter a name for the capability\n");  
         }
     }
 

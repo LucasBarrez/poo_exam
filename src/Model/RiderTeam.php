@@ -12,7 +12,7 @@ class RiderTeam extends Team{
     private Rider $rider;
 
     //Constructor
-    public function __construct(Rider $rider, array $team = [])
+    public function __construct(Rider $rider, array $team=[])
     {
         parent::__construct($team);
         $this->setRider($rider);
@@ -32,16 +32,18 @@ class RiderTeam extends Team{
     public function addAnimal(Animal $animal): self
     {
         if ($this->countEquine() < 5) {
-            $this->team[] = $animal;
+            $this->getTeam[] = $animal;
         }else{
             throw new Exception("You can't add more than 5 equines in team\n");
         }
+        //Problem with count also to test :
+        $this->getTeam[] = $animal;
         return $this;
     }
     
     public function removeAnimal(Animal $animal): self
     {
-        unset($this->team[$animal]);
+        unset($this->getTeam[$animal]);
         return $this;
     }
     
@@ -65,17 +67,17 @@ class RiderTeam extends Team{
         return $this;
     }
     
-        public function __toString(): string
-        {
-            $str = "Rider (owner): {$this->getRider()->getName()}\n";
-            if(count($this->getTeam()) > 0){
-                
-                foreach ($this->getTeam() as $member) {
-                    $str .= $member->getName() . " (".get_class($member) . ")\n";
-                }
-            }
-            $count = $this->countEquine();
-            $str .= "Number of Equines : " . $count . "\n";
-            return $str;
+    public function __toString(): string
+    {
+        $str = "Rider (owner): {$this->getRider()->getName()}\n";
+        if(count($this->getTeam()) >= 0){
+            
+        foreach ($this->getTeam() as $member) {
+            $str .= $member->getName() . " (".get_class($member) . ")\n";
         }
+        }
+        $count = $this->countEquine();
+        $str .= "Number of Equines : " . $count . "\n";
+        return $str;
+    }
 }

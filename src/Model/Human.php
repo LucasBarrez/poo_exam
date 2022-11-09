@@ -20,27 +20,27 @@ abstract class Human{
         if(isset($name)){
             $this->setName($name);
         }else{
-            throw new Exception("Error : you must enter a name for the human");
+            throw new Exception("Error : you must enter a name for the human\n");
         }
         if(isset($adress)){
             $this->setAdress($adress);
         }else{
-            throw new Exception("Error : you must enter an adress for the human");
+            throw new Exception("Error : you must enter an adress for the human\n");
         }
         if(isset($street)){
             $this->setStreet($street);
         }else{
-            throw new Exception("Error : you must enter a street for the human");
+            throw new Exception("Error : you must enter a street for the human\n");
         }
         if(isset($postCode)){
             $this->setPostCode($postCode);
         }else{
-            throw new Exception("Error : you must enter a post code for the human");
+            throw new Exception("Error : you must enter a post code for the human\n");
         }
         if(isset($city)){
             $this->setCity($city);
         }else{
-            throw new Exception("Error : you must enter a city for the human");
+            throw new Exception("Error : you must enter a city for the human\n");
         }
     }
 

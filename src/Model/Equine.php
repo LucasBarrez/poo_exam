@@ -14,7 +14,7 @@ abstract class Equine extends Animal{
     //Properties
     private const COLOR = ['ALZAN', 'BAI', 'PIE', 'GREY', 'WHITE'];
 
-    private string $id;
+
     private string $color;
     private string $water;
 
@@ -42,30 +42,22 @@ abstract class Equine extends Animal{
 
     }
 
-    /**
-     * Get the value of id
-     * @return string
-     */
-    public function getId(): string 
-    {
-        return $this->id;
-    }
 
     /**
      * Set the value of id
-     * @param string $id
+     * 
      * @return  self
      */
-    public function setId($id): self
+    public function getId(): string
     {
         $nameLetter = strtolower(substr($this->getName(), 0));
         $colorLetter = strtoupper(substr($this->getColor(), 0));
         $count = self::$counter;
 
-        $id = "000-{$nameLetter}-{$colorLetter}-{self::$count}";
-        $this->id = $id;
+        $id = "000-{$nameLetter}-{$colorLetter}-{$count}";
 
-        return $this;
+
+        return $id;
     }
 
     /**

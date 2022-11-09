@@ -9,9 +9,9 @@ class Horse extends Equine{
 
     private const RACE = "HORSE";
 
-    public function __construct(string $name, string $id, string $color, string $water)
+    public function __construct(string $name, string $color, string $water)
     {
-        parent::__construct($name, $id, $color, $water);
+        parent::__construct($name, $color, $water);
     }
 
     /**

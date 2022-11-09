@@ -21,27 +21,27 @@ abstract class Event{
         if(isset($name)){
             $this->setName($name);
         }else{
-            throw new Exception("Error : you must enter a name");
+            throw new Exception("Error : you must enter a name\n");
         }
         if(isset($date)){
             $this->setDate($date);
         }else{
-            throw new Exception("Error : you must enter a date");
+            throw new Exception("Error : you must enter a date\n");
         }
         if(isset($location)){
             $this->setLocation($location);
         }else{
-            throw new Exception("Error : you must enter a location");
+            throw new Exception("Error : you must enter a location\n");
         }
         if(isset($maxWater)){
             $this->setMaxWater($maxWater);
         }else{
-            throw new Exception("Error : you must enter a maxWater");
+            throw new Exception("Error : you must enter a maxWater\n");
         }
         if(isset($maxCommitments)){
             $this->setMaxCommitments($maxCommitments);
         }else{
-            throw new Exception("Error : you must enter a maxCommitments");
+            throw new Exception("Error : you must enter a maxCommitments\n");
         }
     }
 
@@ -196,6 +196,6 @@ abstract class Event{
     //output informations about the event
     public function __toString():string
     {
-        return "Event name : ".$this->getName()."\ndate : ".$this->getDate()."\nlocation : ".$this->getLocation()."\nmax commitments : ".$this->getMaxCommitments()."\max water : ".$this->getMaxWater()."\n";
+        return "\nEvent name : ".$this->getName()."\nDate : ".$this->getDate()."\nLocation : ".$this->getLocation()."\nMax commitments : ".$this->getMaxCommitments()."\nMax water : ".$this->getMaxWater()."\n";
     }
 }

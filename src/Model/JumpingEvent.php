@@ -51,13 +51,13 @@ class JumpingEvent extends Event{
     public function addParticipant(Animal $animal):self
     {
         if($this->maxCommitmentsAlert($this->getParticipantsList())){
-            throw new Exception("You can't add more participants to this event : Complete");
+            throw new Exception("You can't add more participants to this event : Complete\n");
         }elseif($this->waterAlert($this->getParticipantsList())){
-            throw new Exception("You can't add more participants to this event : Not enough water");
+            throw new Exception("You can't add more participants to this event : Not enough water\n");
         }
         foreach($this->getParticipantsList() as $participant){
             if($participant->getName() === $animal->getName()){
-                throw new Exception("You can't add more this participant to this event : Already registered");
+                throw new Exception("You can't add more this participant to this event : Already registered\n");
             }
         }
         $this->participantsList[] = $animal;
@@ -73,7 +73,12 @@ class JumpingEvent extends Event{
      */
     public function removeParticipant(Animal $animal):self
     {
-        return $this;
+        if(in_array($animal, $this->getParticipantsList())){
+            unset($this->participantsList[array_search($animal, $this->participantsList)]);
+            return $this;
+        }else{
+            throw new Exception("You can't remove this participant from this event : Not registered");
+        }
     }
 
     //output information about the event

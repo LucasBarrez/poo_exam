@@ -76,7 +76,13 @@ class CrossEvent extends Event{
      */
     public function removeParticipant(Animal $animal):self
     {
-        return $this;
+        if(in_array($animal, $this->getParticipantsList())){
+            unset($this->participantsList[array_search($animal, $this->participantsList)]);
+            return $this;
+        }else{
+            throw new Exception("You can't remove this participant from this event : Not registered");
+        }
+        
     }
 
     //output information about the event

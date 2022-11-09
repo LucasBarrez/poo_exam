@@ -24,11 +24,11 @@ class Stable{
         if (!isset($name) or !isset($adress) or !isset($street) or !isset($postCode) or !isset($city)){
             throw new Exception("Invalid arguments for Stable : missing arguments \n");
         }else{
-            $this->name = $name;
-            $this->adress = $adress;
-            $this->street = $street;
-            $this->postCode = $postCode;
-            $this->city = $city;
+            $this->setName($name)
+                ->setAdress($adress)
+                ->setStreet($street)
+                ->setPostCode($postCode)
+                ->setCity($city);
         }
                 
     }
