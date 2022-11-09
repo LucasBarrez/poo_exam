@@ -1,6 +1,11 @@
 <?php
 namespace App\Model;
 
+use Exception;
+
+//This class has the responsability to set the team of riders
+//It is open to be extends to add more specific methods and can be used to create a time of dogs, equines, etc...
+
 class RiderTeam extends Team{
 
     //Properties
@@ -13,10 +18,14 @@ class RiderTeam extends Team{
         $this->setRider($rider);
     }
 
-    //Count number of equine in team
-    public function countEquine(): int
-    {
-        return count($this->getTeam());
+    public function countEquine(): int{
+        $count = 0;
+        foreach($this->getTeam() as $animal){
+            if($animal instanceof Equine){
+                $count++;
+            }
+        }
+        return $count;
     }
 
     //For example object Rider can have 5 horses max and a dog
@@ -25,7 +34,7 @@ class RiderTeam extends Team{
         if ($this->countEquine() < 5) {
             $this->team[] = $animal;
         }else{
-            echo "You can't add more than 5 equines in team\n";
+            throw new Exception("You can't add more than 5 equines in team\n");
         }
         return $this;
     }
@@ -65,8 +74,8 @@ class RiderTeam extends Team{
                     $str .= $member->getName() . " (".get_class($member) . ")\n";
                 }
             }
-    
-            $str .= "Number of Equines : " . $this->getTeam()[1] . "\n";
+            $count = $this->countEquine();
+            $str .= "Number of Equines : " . $count . "\n";
             return $str;
         }
 }
