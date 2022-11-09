@@ -11,7 +11,7 @@ use App\Model\Animal;
 abstract class Equine extends Animal{
 
     //Properties
-    private const COLOR = ['Alzan', 'Bai', 'Pie', 'Grey', 'White'];
+    private const COLOR = ['ALZAN', 'BAI', 'PIE', 'GREY', 'WHITE'];
 
     private string $id;
     private string $color;
@@ -79,12 +79,13 @@ abstract class Equine extends Animal{
      */
     public function setColor($color): self
     {
-        if(!in_array($color, self::COLOR)){
-            echo("The color must be Alzan, Bai, Pie, Grey or White\n");
-        }else{
+        $color = str_replace(" ", "", $color);
+        $color = strtoupper($color);
+        if(in_array($color, self::COLOR)){
             $this->color = $color;
+        }else{
+            echo("The color must be Alzan, Bai, Pie, Grey or White\n");
         }
-
         return $this;
     }
 
