@@ -4,14 +4,18 @@ namespace App\Model;
 
 class PoneyGames extends Type{
 
+    //Attributes
+    public const EVENT = "PONEYGAMES";
+
 //Properties
     //Today it's an equine Pony games
 
     private array $participantsList;
 
     //Constructor
-    public function __construct(string $name, string $date, string $location, int $maxWater, int $maxCommitments){
+    public function __construct(string $name, string $date, string $location, int $maxWater, int $maxCommitments, array $participantsList = []){
         parent::__construct($name, $date, $location, $maxWater, $maxCommitments);
+        $this->setParticipantsList($participantsList);
     }
 
     /**

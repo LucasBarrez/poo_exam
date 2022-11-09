@@ -4,14 +4,18 @@ namespace App\Model;
 
 class JumpingEvent extends Event{
 
+    //Attributes
+    public const EVENT = "JUMPING";
+
 //Properties
     //Today it's an equine jump event
 
     private array $participantsList;
 
     //Constructor
-    public function __construct(string $name, string $date, string $location, int $maxWater, int $maxCommitments){
+    public function __construct(string $name, string $date, string $location, int $maxWater, int $maxCommitments, array $participantsList = []){
         parent::__construct($name, $date, $location, $maxWater, $maxCommitments);
+        $this->setParticipantsList($participantsList);
     }
 
     /**
