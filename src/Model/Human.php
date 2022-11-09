@@ -1,6 +1,8 @@
 <?php
 namespace App\Model;
 
+use Exception;
+
 //This class has the responsability to initialize the human who could be a manager or a ridder or someone else
 
 abstract class Human{
@@ -15,11 +17,31 @@ abstract class Human{
 
     //Constructor
     public function __construct(string $name, string $adress, string $street, int $postCode, string $city){
-        $this->setName($name)
-            ->setAdress($adress)
-            ->setStreet($street)
-            ->setPostCode($postCode)
-            ->setCity($city);
+        if(isset($name)){
+            $this->setName($name);
+        }else{
+            throw new Exception("Error : you must enter a name for the human");
+        }
+        if(isset($adress)){
+            $this->setAdress($adress);
+        }else{
+            throw new Exception("Error : you must enter an adress for the human");
+        }
+        if(isset($street)){
+            $this->setStreet($street);
+        }else{
+            throw new Exception("Error : you must enter a street for the human");
+        }
+        if(isset($postCode)){
+            $this->setPostCode($postCode);
+        }else{
+            throw new Exception("Error : you must enter a post code for the human");
+        }
+        if(isset($city)){
+            $this->setCity($city);
+        }else{
+            throw new Exception("Error : you must enter a city for the human");
+        }
     }
 
     /**

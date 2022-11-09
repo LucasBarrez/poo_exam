@@ -1,6 +1,9 @@
 <?php
 namespace App\Model;
 
+use Exception;
+use App\Model\Animal;
+
 abstract class Team{
 
     // Propriétés
@@ -8,7 +11,11 @@ abstract class Team{
 
     // Constructeur
     public function __construct(array $team = []){
-        $this->setTeam($team);
+        if(isset($team)){
+            $this->setTeam($team);
+        }else{
+            throw new Exception("Error : you must enter a team");
+        }
     }
 
     abstract public function addAnimal(Animal $animal): self;
@@ -33,6 +40,22 @@ abstract class Team{
         $this->team = $team;
 
         return $this;
+    }
+
+    /**
+     * Count the number of animals in the team
+     *
+     * @return integer
+     */
+    public function countAnimal(): int{
+        return count($this->getTeam());
+    }
+
+    //output the team's informations
+    public function __toString():string
+    {
+        $str = "Numbers of animals in the team : ".$this->countAnimal()."\n";
+        return $str;
     }
 
 }
