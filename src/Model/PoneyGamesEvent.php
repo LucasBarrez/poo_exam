@@ -1,8 +1,10 @@
 <?php
 namespace App\Model;
 
+use Exception;
 
-class PoneyGames extends Type{
+
+class PoneyGamesEvent extends Event{
 
     //Attributes
     public const EVENT = "PONEYGAMES";
@@ -26,6 +28,20 @@ class PoneyGames extends Type{
      */
     public function addParticipant(Animal $animal):self
     {
+        if($this->maxCommitmentsAlert($this->getParticipantsList())){
+            throw new Exception("You can't add more participants to this event : Complete");
+        }elseif($this->waterAlert($this->getParticipantsList())){
+            throw new Exception("You can't add more participants to this event : Not enough water");
+        }
+        elseif($animal instanceof Horse){
+            throw new Exception("You can't add this participant to this event : Horse can't participate to PONEYGAMES");
+        }
+        foreach($this->getParticipantsList() as $participant){
+            if($participant->getName() === $animal->getName()){
+                throw new Exception("You can't add more this participant to this event : Already registered");
+            }
+        }
+        $this->participantsList[] = $animal;
         return $this;
     }
 
@@ -61,6 +77,17 @@ class PoneyGames extends Type{
     public function getParticipantsList(): array
     {
         return $this->participantsList;
+    }
+
+    //output information about the event
+    public function __toString():string
+    {
+        $output = parent::__toString();
+        $output .= "Participants :\n\n";
+        foreach($this->getParticipantsList() as $participant){
+            $output .= $participant->getName() . "\n";
+        }
+        return $output;
     }
 
 }

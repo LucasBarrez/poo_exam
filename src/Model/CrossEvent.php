@@ -1,6 +1,10 @@
 <?php
 namespace App\Model;
 
+use Exception;
+use App\Model\Event;
+use App\Model\Animal;
+
 class CrossEvent extends Event{
 
     //Attributes
@@ -16,6 +20,8 @@ class CrossEvent extends Event{
         parent::__construct($name, $date, $location, $maxWater, $maxCommitments);
         $this->setParticipantsList($participantsList);
     }
+
+    //Methods
 
     /**
      * Set the value of participantsList
@@ -47,6 +53,17 @@ class CrossEvent extends Event{
      */
     public function addParticipant(Animal $animal):self
     {
+        if($this->maxCommitmentsAlert($this->getParticipantsList())){
+            throw new Exception("You can't add more participants to this event : Complete");
+        }elseif($this->waterAlert($this->getParticipantsList())){
+            throw new Exception("You can't add more participants to this event : Not enough water");
+        }
+        foreach($this->getParticipantsList() as $participant){
+            if($participant->getName() === $animal->getName()){
+                throw new Exception("You can't add more this participant to this event : Already registered");
+            }
+        }
+        $this->participantsList[] = $animal;
         return $this;
     }
 
@@ -62,5 +79,14 @@ class CrossEvent extends Event{
         return $this;
     }
 
-
+    //output information about the event
+    public function __toString():string
+    {
+        $output = parent::__toString();
+        $output .= "Participants :\n\n";
+        foreach($this->getParticipantsList() as $participant){
+            $output .= $participant->getName() . "\n";
+        }
+        return $output;
+    }
 }
