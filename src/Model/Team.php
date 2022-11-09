@@ -7,7 +7,7 @@ use App\Model\Animal;
 abstract class Team{
 
     // Propriétés
-    private array $team;
+    protected array $team;
 
     // Constructeur
     public function __construct(array $team = []){

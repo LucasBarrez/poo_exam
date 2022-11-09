@@ -10,6 +10,7 @@ use App\Model\Sheitland;
 use App\Model\Capabilitie;
 use App\Model\DressageEvent;
 use App\Model\Human;
+use App\Model\JumpingEvent;
 use App\Model\RiderTeam;
 
 require_once("../src/app.php");
@@ -122,7 +123,7 @@ $horse = new Horse("Lucky","alzan",4);
 $horse->setCapabilitie($jumping);
 echo $horse->__toString();
 echo "\n------Equine : Sheitland------\n\n";
-$sheitland = new Sheitland("Lucky","Bai",4);
+$sheitland = new Sheitland("Marc","Bai",4);
 $sheitland->setCapabilitie($dressage);
 echo $sheitland->__toString();
 
@@ -133,10 +134,15 @@ $riderTeam = new RiderTeam($rider1);
 $riderTeam->addAnimal($pony);
 $riderTeam->addAnimal($horse);
 $riderTeam->addAnimal($sheitland);
+try {
+    $riderTeam->addAnimal($sheitland);
+} catch (Exception $e) {
+    echo $e->getMessage();
+}
 //Output riderTeam's informations
 //Problem with counter and add method
 echo $riderTeam->__toString();
-var_dump($riderTeam->getTeam());
+//var_dump($riderTeam->getTeam());
 
 //Create a Events
 echo "\n------Create a Events------\n\n";
@@ -179,3 +185,55 @@ echo $dressageEvent->__toString();
 
 //It's the same with other events
 
+//Create Jumping Event
+echo "\n------Create Jumping Event------\n\n";
+$jumpingEvent = new JumpingEvent("Jumping", "12 novembre", "Caen", 5, 10);
+
+//Add Equines to Dressage Event
+//Here the exception is taken but a problem subsists ( water error is never thrown)
+try{
+    echo "\n------Add Equines to Jumping Event------\n\n";
+    $jumpingEvent->addParticipant($pony);
+    $jumpingEvent->addParticipant($horse);
+    $jumpingEvent->addParticipant($sheitland);
+    $jumpingEvent->addParticipant($sheitland);
+    echo $jumpingEvent->__toString();
+}catch(Exception $e){
+    echo $e->getMessage();
+}
+
+
+//ouput Jumping Event
+echo $jumpingEvent->__toString();
+
+//Remove an equine from event
+echo "\n------Remove an equine from event------\n\n";
+$jumpingEvent->removeParticipant($pony);
+
+//Try to remove participant that is not in the event
+echo "\n------Remove an equine that is not registered in the event------\n\n";
+try {
+    $jumpingEvent->removeParticipant($sheitland);
+} catch (Exception $e) {
+    echo $e->getMessage();
+}
+
+//ouput Dressage Event
+echo $jumpingEvent->__toString();
+
+/**
+ * TO DO FOR THE NEXT VERSION
+ * 
+ * Refactoring the code (for example : too many responsability in event class)
+ * DON'T FORGET TEST such as : we can subscribe to an event only if we have the right game type
+ * Learn to use the exception, try, catch
+ * 
+ * Improve architecture of the repository
+ * 
+ * What I need : ===>>> More practice in php, OOP ... / Take step back
+ * 
+ * Positives points :
+ * => Improving my OOP skills
+ * => try to think solid even if I know that my code could be better ( but I have an idea to improve it : which class are too heavy etc...)
+ * => Improving my PHP skills
+ */

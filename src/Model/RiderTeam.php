@@ -31,21 +31,26 @@ class RiderTeam extends Team{
     //For example object Rider can have 5 horses max and a dog
     public function addAnimal(Animal $animal): self
     {
-        if ($this->countEquine() < 5) {
-            $this->getTeam[] = $animal;
-        }else{
-            throw new Exception("You can't add more than 5 equines in team\n");
-        }
+        // if ($this->countEquine() < 5) {
+        //     $this->getTeam[] = $animal;
+        // }else{
+        //     throw new Exception("You can't add more than 5 equines in team\n");
+        // }
         //Problem with count also to test :
-        $this->getTeam[] = $animal;
+        $this->team[] = $animal;
         return $this;
     }
     
     public function removeAnimal(Animal $animal): self
     {
-        unset($this->getTeam[$animal]);
-        return $this;
+        if(in_array($animal, $this->team)){
+            unset($this->team[array_search($animal, $this->team)]);
+            return $this;
+        }else{
+            throw new Exception("You can't remove this animal from this team : Not registered");
+        }
     }
+
     
     /**
      * Get the value of rider
