@@ -4,8 +4,8 @@ namespace App\Model;
 //This class has the responsability to initialize the human who could be a manager or a ridder or someone else
 
 abstract class Human{
-    //Porperties
 
+    //Porperties
     private string $name;
     private string $adress;
     private string $street;
@@ -33,7 +33,7 @@ abstract class Human{
 
     /**
      * Set the value of name
-     *
+     * @param string $name
      * @return  self
      */ 
     public function setName($name): self
@@ -54,7 +54,7 @@ abstract class Human{
 
     /**
      * Set the value of adress
-     *
+     * @param string $adress
      * @return  self
      */ 
     public function setAdress($adress): self
@@ -75,7 +75,7 @@ abstract class Human{
 
     /**
      * Set the value of street
-     *
+     * @param string $street
      * @return  self
      */ 
     public function setStreet($street): self
@@ -117,7 +117,7 @@ abstract class Human{
 
     /**
      * Set the value of city
-     *
+     * @param string $city
      * @return  self
      */ 
     public function setCity($city): self

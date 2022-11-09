@@ -7,7 +7,7 @@ namespace App\Model;
 class Capabilitie{
     
     //Attributes : all in uppercase and without spaces
-    private const possibilities = ["JUMPING", "DRESSAGE", "CROSS", "PONEYGAMES"];
+    private const possibilities = ["JUMPING", "DRESSAGE", "CROSS", "PONYGAMES"];
     
     //Properties
     private string $name;
@@ -41,5 +41,9 @@ class Capabilitie{
             echo "The capability must be one of the following : ".implode(", ", self::possibilities)."\n";
         }
         return $this;
+    }
+
+    public function __toString(): string{
+        return $this->name;
     }
 }

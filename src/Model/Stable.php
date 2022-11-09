@@ -2,35 +2,35 @@
 namespace App\Model;
 
 use Exception;
+use App\Model\Manager;
 
 //This class has one responsability: to initialize the stable
+//This class has one option: a manager
 class Stable{
 
     //Properties
-
     private string $name;
     private string $adress;
     private string $street;
-    private string $postCode;
+    private int $postCode;
     private string $city;
 
-    //Human who is in charge of the stable
-    private ?Manager $manager = null;
+    private Manager $manager;
 
     //Constructor
     //Manager is not mandatory whereas the other properties are
-    public function __construct(string $name, string $adress, string $street, string $postCode, string $city, $manager = null){
-        $this->setName($name)
-            ->setAdress($adress)
-            ->setStreet($street)
-            ->setPostCode($postCode)
-            ->setCity($city);
-        if($manager instanceof Manager and $manager !== null){
-            $this->setManager($manager);
+    public function __construct(string $name, string $adress, string $street, int $postCode, string $city){
+
+        if (!isset($name) or !isset($adress) or !isset($street) or !isset($postCode) or !isset($city)){
+            throw new Exception("Invalid arguments for Stable : missing arguments \n");
+        }else{
+            $this->name = $name;
+            $this->adress = $adress;
+            $this->street = $street;
+            $this->postCode = $postCode;
+            $this->city = $city;
         }
-        if ($manager !== null and !($manager instanceof Manager)){
-            die("The manager must be an instance of Manager class\n");
-        }
+                
     }
 
     /**
@@ -44,18 +44,23 @@ class Stable{
 
     /**
      * Set the value of name
-     *
+     * @param string $name
      * @return  self
      */ 
     public function setName($name): self
     {
-        $this->name = $name;
+        if (is_string($name)){
+            $this->name = $name;
+            return $this;
+        }else{
+            throw new Exception("Invalid argument in Stable : name must be a string\n");
+        }
 
         return $this;
     }
 
     /**
-     * Get the value of adress
+     * Get the value of adress (email)
      * @return string
      */ 
     public function getAdress(): string
@@ -65,13 +70,17 @@ class Stable{
 
     /**
      * Set the value of adress
-     *
+     * @param string $adress
      * @return  self
      */ 
     public function setAdress($adress): self
     {
-        $this->adress = $adress;
-
+        if (is_string($adress)){
+            $this->adress = $adress;
+            return $this;
+        }else{
+            throw new Exception("Invalid argument in Stable {$this->getName()}: adress must be a string\n");
+        }
         return $this;
     }
 
@@ -86,13 +95,17 @@ class Stable{
 
     /**
      * Set the value of street
-     *
+     * @param string $street
      * @return  self
      */ 
     public function setStreet($street): self
     {
-        $this->street = $street;
-
+        if (is_string($street)){
+            $this->street = $street;
+            return $this;
+        }else{
+            throw new Exception("Invalid argument in Stable {$this->getName()}: street must be a string\n");
+        }
         return $this;
     }
 
@@ -107,13 +120,17 @@ class Stable{
 
     /**
      * Set the value of postCode
-     *
+     * @param int $postCode
      * @return  self
      */ 
     public function setPostCode($postCode): self
     {
-        $this->postCode = $postCode;
-
+        if (gettype($postCode) == "integer"){
+            $this->postCode = $postCode;
+            return $this;
+        }else{
+            throw new Exception("Invalid argument in Stable {$this->getName()}: postCode must be an integer\n");
+        }
         return $this;
     }
 
@@ -128,13 +145,17 @@ class Stable{
 
     /**
      * Set the value of city
-     *
+     * @param string $city
      * @return  self
      */ 
     public function setCity($city): self
     {
-        $this->city = $city;
-
+        if (is_string($city)){
+            $this->city = $city;
+            return $this;
+        }else{
+            throw new Exception("Invalid argument in Stable {$this->getName()}: city must be a string\n");
+        }
         return $this;
     }
 
@@ -154,20 +175,25 @@ class Stable{
      */ 
     public function setManager($manager): self
     {
-        $this->manager = $manager;
+        if ($manager instanceof Manager){
+            $this->manager = $manager;
+            return $this;
+        }else{
+            throw new Exception("Invalid argument in Stable {$this->getName()}: manager must be an instance of Manager\n");
+        }
         return $this;
     }
 
     //output the stable's informations
     public function __toString(): string
     {
-        $str = "Stable's name: {$this->getName()}\n
-        Adress: {$this->getAdress()}\n
-        Street: {$this->getStreet()}\n
-        Post code: {$this->getPostCode()}\n
-        City: {$this->getCity()}\n\n";
+        $str = "Stable's name: {$this->getName()}
+        Adress: {$this->getAdress()}
+        Street: {$this->getStreet()}
+        Post code: {$this->getPostCode()}
+        City: {$this->getCity()}\n";
 
-        if ($this->manager){
+        if (isset($this->manager)){
             $str .= "        Manager: {$this->getManager()->getName()}\n";
         }else{
             $str .= "        Manager: Vacancy job\n";

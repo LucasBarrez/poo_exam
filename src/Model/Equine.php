@@ -18,23 +18,18 @@ abstract class Equine extends Animal{
     private string $water;
 
     //In option: a rider 
-    private ?Rider $rider = null;
+    private Rider $rider;
 
     //Counter to know how many equines we have created
     private static int $counter = 0;
 
     //Constructor
-    public function __construct(string $name, string $id, string $color, string $water, $rider = null){
+    public function __construct(string $name, string $id, string $color, string $water){
         parent::__construct($name);
         $this->setId($id)
             ->setColor($color)
             ->setWater($water);
-        if($rider instanceof Rider and $rider !== null){
-            $this->setRider($rider);
-        }
-        if ($rider !== null and !($rider instanceof Rider)){
-            echo "The rider must be an instance of Rider class\n";
-        }
+
         //$this->setRider($rider);
         self::$counter++;
     }
@@ -85,7 +80,7 @@ abstract class Equine extends Animal{
     public function setColor($color): self
     {
         if(!in_array($color, self::COLOR)){
-            die("The color must be Alzan, Bai, Pie, Grey or White\n");
+            echo("The color must be Alzan, Bai, Pie, Grey or White\n");
         }else{
             $this->color = $color;
         }
@@ -138,7 +133,7 @@ abstract class Equine extends Animal{
     //output the equine's informations
     public function __toString(): string{
         $str = parent::__toString()."Id : ".$this->getId()."\nColor : ".$this->getColor()."\nWater : ".$this->getWater()."\n";
-        if($this->rider){
+        if(isset($this->rider)){
             $str .= "Rider : ".$this->getRider()->getName()."\n";
         }else{
             $str .= "Rider : None\n";

@@ -12,19 +12,12 @@ class Pony extends Equine{
     private const RACE = "PONY";
 
     //Properties
-    private ?Capabilitie $capabilitie = null;
+    private Capabilitie $capabilitie;
 
 
-    public function __construct($capabilitie = null, string $name, string $id, string $color, string $water, $rider = null)
+    public function __construct(string $name, string $id, string $color, string $water)
     {
-        parent::__construct($name, $id, $color, $water, $rider);
-        if($capabilitie instanceof Capabilitie and $capabilitie !== null){
-            $this->setCapabilitie($capabilitie);
-        }
-        if ($capabilitie !== null and !($capabilitie instanceof Capabilitie)){
-            echo "The capabilitie must be an instance of Capabilies class\n";
-        }
-        
+        parent::__construct($name, $id, $color, $water);        
     }
 
     /**
@@ -50,7 +43,7 @@ class Pony extends Equine{
     public function __toString(): string
     {
         $str = "\nRace :".self::RACE."\n".parent::__toString();
-        if($this->capabilitie !== null){
+        if(isset($this->capabilitie)){
             $str .= "Game type : ".$this->capabilitie->getName()."\n";
         }
 
