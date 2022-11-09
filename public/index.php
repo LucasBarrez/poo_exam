@@ -1,5 +1,8 @@
 <?php
 
+#AUTHOR : BARREZ Lucas
+#DATE : 2022-10-11
+
 use App\Model\Pony;
 use App\Model\Horse;
 use App\Model\Rider;
@@ -237,3 +240,4 @@ echo $jumpingEvent->__toString();
  * => try to think solid even if I know that my code could be better ( but I have an idea to improve it : which class are too heavy etc...)
  * => Improving my PHP skills
  */
+
