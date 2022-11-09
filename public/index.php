@@ -177,3 +177,5 @@ try {
 //ouput Dressage Event
 echo $dressageEvent->__toString();
 
+//It's the same with other events
+
