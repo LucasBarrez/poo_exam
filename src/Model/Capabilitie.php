@@ -1,6 +1,8 @@
 <?php
 namespace App\Model;
 
+use Exception;
+
 
 // In the future, we will be abble to add new capabilities to our equines (like swimming, flying, etc.)
 //Today, we have only four capability: Jumping, dressage, cross, poney games
@@ -14,7 +16,11 @@ class Capabilitie{
 
     //Constructor
     public function __construct(string $name){
-        $this->setName($name);
+        if (isset($name)) {
+            $this->setName($name);
+        }else{
+            throw new Exception("Error : you must enter a name for the capability");  
+        }
     }
 
     /**
@@ -38,7 +44,7 @@ class Capabilitie{
         if(in_array($name, self::possibilities)){
             $this->name = $name;
         }else{
-            echo "The capability must be one of the following : ".implode(", ", self::possibilities)."\n";
+            throw new Exception("The capability must be one of the following : ".implode(", ", self::possibilities)."\n");
         }
         return $this;
     }

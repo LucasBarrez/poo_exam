@@ -20,9 +20,6 @@ abstract class Equine extends Animal{
     //In option: a rider 
     private Rider $rider;
 
-    //Counter to know how many equines we have created
-    private static int $counter = 0;
-
     //Constructor
     public function __construct(string $name, string $id, string $color, string $water){
         parent::__construct($name);
@@ -30,16 +27,6 @@ abstract class Equine extends Animal{
             ->setColor($color)
             ->setWater($water);
 
-        //$this->setRider($rider);
-        self::$counter++;
-    }
-
-    /**
-     * Get the value of equine (counter)
-     * @return int
-     */
-    public static function getCounter():int {
-        return self::$counter;
     }
 
     /**

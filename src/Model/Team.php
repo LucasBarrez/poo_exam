@@ -5,12 +5,10 @@ abstract class Team{
 
     // Propriétés
     private array $team;
-    private Human $human;
 
     // Constructeur
-    public function __construct(Human $human, array $team = []){
-        $this->setTeam($team)
-            ->setHuman($human);
+    public function __construct(array $team = []){
+        $this->setTeam($team);
     }
 
     abstract public function addAnimal(Animal $animal): self;
@@ -37,23 +35,4 @@ abstract class Team{
         return $this;
     }
 
-    /**
-     * Get the value of Human
-     */ 
-    public function getHuman(): Human
-    {
-        return $this->human;
-    }
-
-    /**
-     * Set the value of Human
-     *
-     * @return  self
-     */ 
-    private function setHuman($human): self
-    {
-        $this->human = $human;
-
-        return $this;
-    }
 }
